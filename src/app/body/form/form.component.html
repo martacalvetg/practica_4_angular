@@ -1,0 +1,102 @@
+<div id="content">
+    <div class="form">
+
+        <h1 class="text-center mb-4">Formulari</h1>
+    
+    
+        <form [formGroup]="MyNewForm" (ngSubmit)="createCliente(MyNewForm.value)">
+    
+            <div class="input-group mb-3">
+                <span class="input-group-text">Nom i Congnoms</span>
+                <input type="text" aria-label="Nombre" #itNombre name="nombre" formControlName="nombre" class="form-control">
+                <input type="text" aria-label="Apellido 1" name="apellido1" formControlName="apellido1" class="form-control">
+                <input type="text" aria-label="Apellido 2" name="apellido2" formControlName="apellido2" class="form-control">
+            </div>
+    
+            <div *ngIf="nombre.invalid" class="alert alert-danger">El camp nom es oblicagori</div>
+            <div *ngIf="(apellido1.value == '' || apellido1.errors?.['minlength'] || apellido1.errors?.['maxlength'])" class="alert alert-danger">El camp del primer cognom es obliagori</div>
+    
+            <div class="input-group mb-3">
+                <span class="input-group-text">Correu Electrònic</span>
+                <input type="email" #itEmail aria-label="Correo Electónico" name="email" formControlName="email" class="form-control">
+            </div>
+            <div *ngIf="(email.errors?.['email'])" class="alert alert-danger">Email incorrecte</div>
+            <div *ngIf="(email.value == '')" class="alert alert-danger">El camp email es oblicagori</div>
+
+    
+            <div class="input-group mb-3">
+                <span class="input-group-text">DNI</span>
+                <input type="text" aria-label="DNI" name="dni" formControlName="dni" class="form-control">
+                <span class="input-group-text">Número de tlf.</span>
+                <input type="text" aria-label="Número de tlf." name="tlf" formControlName="tlf" class="form-control">
+            </div>
+            <div class="row mb-3">
+                <div *ngIf="dni.invalid" class="alert m-2 col alert-danger">DNI invàlid</div>
+                <div *ngIf="tlf.value == ''" class="alert m-2 col alert-danger">El camp telèfon es oblicagori</div>
+                <div *ngIf="(tlf.errors?.['minlength'] || tlf.errors?.['maxlength'])" class="alert m-2 col alert-danger">El telèfon és invàlid</div>
+            </div>
+            
+            <div class="input-group mb-3">
+                <span class="input-group-text">Data de neixement</span>
+                <input type="date" aria-label="Fecha de nacimiento" name="fnacimiento" formControlName="fnacimiento" class="form-control">
+            </div>
+    
+            <div class="input-group mb-3">
+                <span class="input-group-text">Provincia</span>
+                <select class="form-control" (change)="changeProvincia($event)" #itProvincia formControlName="provincia" [class.is-invalid]="provincia.invalid" [class.is-valid]="provincia.valid">
+                    <option selected hidden>Provincia</option>
+                    <ng-container *ngFor="let provincia of provincias">
+                        <option selected [ngValue]="provincia">{{provincia}}</option>
+                    </ng-container>
+                </select>
+            </div>
+    
+            <div class="input-group mb-3">
+                <span class="input-group-text">Destí</span>
+                <select class="form-control " #itDestino formControlName="destino" [class.is-invalid]="destino.invalid" [class.is-valid]="destino.valid">
+                    <ng-container *ngFor="let destino of destinos">
+                        <option selected [ngValue]="destino">{{destino}}</option>
+                    </ng-container>
+                </select>
+            </div>
+    
+    
+            <div class="form-check my-3">
+                <input class="form-check-input" type="checkbox" name="comapania" formControlName="comapania">
+                <label>Viatjo amb companyia</label>
+            </div>
+    
+            <button type="submit"  (click)="createCliente" [disabled]="MyNewForm.invalid">Enviar</button>
+        </form>
+    </div>
+</div>
+
+
+    <!-- campo nombre -->
+        <!-- <div class="input-grup mb-3">
+            <div class="input-group-prepend">
+                <span class="input-grup-text">Nombre</span>
+            </div>
+            <input type="text" class="form-control" name="nombre" formControlName="nombre">
+        </div> -->
+
+        <!-- <div class="input-grup mb-3">
+            <div class="input-group-prepend">
+                <span class="input-grup-text">Apellido1</span>
+            </div>
+            <input type="text" class="form-control" name="apellido1" formControlName="apellido1">
+        </div> -->
+     
+        <!-- <div class="input-grup mb-3">
+            <div class="input-group-prepend">
+                <span class="input-grup-text">Apellido2</span>
+            </div>
+            <input type="text" class="form-control" name="apellido2" formControlName="apellido2">
+        </div> -->
+        
+        <!-- <div class="input-grup mb-3">
+            <div class="input-group-prepend">
+                <span class="input-grup-text">Fecha de nacimiento</span>
+            </div>
+            <input type="date" class="form-control" name="fnacimiento" formControlName="fnacimiento">
+        </div> -->

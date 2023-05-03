@@ -1,0 +1,31 @@
+<div id="general">
+  <div class="containerCliente">
+    <h1 class="text-center my-3">Clients</h1>
+    <ng-container *ngFor="let cliente of clientes">
+      <div class="offset-3 my-5">
+        <div class="row my-3">
+          <p class="col-5">Nom: </p>
+          <p class="col-4">{{cliente.name}}</p>
+        </div>
+    
+        <div class="row my-3">
+          <p class="col-5">Correu electònic: </p>
+          <p class="col-4">{{cliente.email}}</p>
+        </div>
+    
+        <div class="row my-3">
+          <p class="col-5">Provincia: </p>
+          <p class="col-4">{{cliente.provincia}}</p>
+    
+        </div>
+        
+        <div class="row my-3">
+          <p class="col-5">Destí: </p>
+          <p class="col-4">{{cliente.destino}}</p>
+        </div>
+
+        <button (click)="deleteUser(cliente.email)"><b>Eliminar</b></button>
+      </div>  
+    </ng-container>
+  </div>
+</div>
